@@ -37,8 +37,10 @@ function SubComponent() {
       })
 
       ws.onmessage = (event) => {
-        xterm.write('\n')
-        xterm.write(event.data)
+        if (event.data != '') {
+          xterm.write('\n')
+          xterm.write(event.data)
+        };
       }
       
       ws.onopen = () => {
