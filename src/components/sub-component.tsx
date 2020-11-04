@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React, { useEffect, useState, useRef } from 'react';
-import GenericTemplate from "./GenericTemplate";
+import React, { useEffect, useRef } from 'react';
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit'
 import { AttachAddon } from 'xterm-addon-attach'
  
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    appBarSpacer: theme.mixins.toolbar,
+  })
+);
+
+
 function SubComponent() {
 
   const wsUrl = 'wss://' + window.location.host + '/ws';
@@ -13,8 +20,9 @@ function SubComponent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const xterm = new Terminal({
     cursorBlink: true,
-    tabStopWidth: 8,
-    convertEol: true,
+    fontFamily: "Consolas, 'Courier New', monospace",
+    cols: 80, 
+    rows: 24
   })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,8 +48,8 @@ function SubComponent() {
         if (event.data != '') {
           xterm.write('\n')
           xterm.write(event.data)
-        };
-      }
+        }
+      };
       
       ws.onopen = () => {
         xterm.loadAddon(new AttachAddon(ws))
@@ -49,23 +57,19 @@ function SubComponent() {
       ws.onerror = (e) =>  { console.log(e) }
       ws.onclose = () => {
         const red = `\x1b[31m`
-        xterm.writeln('\n' + red + 'WEBSOCKET DISCONNECTED, PRESS ESC TO EXIT')
+        xterm.writeln('\n' + red + 'WEBSOCKET DISCONNECTED')
         xterm.setOption('disableStdin', true)
-        xterm.onKey(({key}) => {
-          if (key.length === 1 && key.charCodeAt(0) === 27){
-            xterm.dispose()
-          }
-        })
       }
     }
   }, [xterm, terminalRef, fitAddon, wsUrl])
+  useEffect(() => () => xterm.dispose(), [xterm]) ; 
 
+  const classes = useStyles();
     return (
-      <GenericTemplate>
-
-        <div ref={terminalRef} id='terminal'></div>
-
-      </GenericTemplate>
+      <>
+        <div className={classes.appBarSpacer} />
+        <div  ref={terminalRef} id='terminal'></div>
+      </>  
     );
 }
 
