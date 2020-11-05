@@ -45,13 +45,15 @@ function SubComponent() {
         }
       })
 
+      /*
       ws.onmessage = (event) => {
         if (event.data != '') {
           xterm.write('\n')
           xterm.write(event.data)
         }
       };
-      
+      */
+
       ws.onopen = () => {
         xterm.loadAddon(new AttachAddon(ws))
       }
