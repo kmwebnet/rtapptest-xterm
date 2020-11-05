@@ -25,7 +25,7 @@ function Routes () {
   const classes = useStyles();
 
     return (
-      <Router>
+      <Router basename='/app'>
 
       <NavBar show={open} drawToggleClickHandler={handleToggle}
       />
