@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Terminal } from 'xterm';
+import 'xterm/css/xterm.css';
 import { FitAddon } from 'xterm-addon-fit'
 import { AttachAddon } from 'xterm-addon-attach'
  
