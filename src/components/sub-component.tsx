@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Terminal } from 'xterm';
 import 'xterm/css/xterm.css';
-import { FitAddon } from 'xterm-addon-fit'
 import { AttachAddon } from 'xterm-addon-attach'
  
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,16 +23,11 @@ function SubComponent() {
     fontFamily: "Consolas, 'Courier New', monospace",
   })
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fitAddon = new FitAddon()
-  xterm.loadAddon(fitAddon)
-
   useEffect(() => {
     if(terminalRef.current && !terminalRef.current.children.length) {
       xterm.open(terminalRef.current)
       const ws = new WebSocket(wsUrl);
       xterm.focus()
-      fitAddon.fit()
       /*
       xterm.onData((data) => {
         xterm.write(data)
@@ -65,7 +59,7 @@ function SubComponent() {
         xterm.setOption('disableStdin', true)
       }
     }
-  }, [xterm, terminalRef, fitAddon, wsUrl])
+  }, [xterm, terminalRef, wsUrl])
   useEffect(() => () => xterm.dispose(), [xterm]) ; 
 
   const classes = useStyles();
