@@ -22,8 +22,6 @@ function SubComponent() {
   const xterm = new Terminal({
     cursorBlink: true,
     fontFamily: "Consolas, 'Courier New', monospace",
-    cols: 80, 
-    rows: 24
   })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
