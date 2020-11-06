@@ -39,12 +39,13 @@ function SubComponent() {
       xterm.onData((data) => {
         xterm.write(data)
       })
+      /*
       xterm.onKey(({key}) => {
         if (key.charCodeAt(0) === 13){
           xterm.write('\n')
         }
       })
-
+      */
       /*
       ws.onmessage = (event) => {
         if (event.data != '') {
