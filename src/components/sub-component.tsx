@@ -36,9 +36,11 @@ function SubComponent() {
       const ws = new WebSocket(wsUrl);
       xterm.focus()
       fitAddon.fit()
+      /*
       xterm.onData((data) => {
         xterm.write(data)
       })
+      */
       /*
       xterm.onKey(({key}) => {
         if (key.charCodeAt(0) === 13){
