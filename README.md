@@ -1,3 +1,4 @@
-# rainbowtype-app-boilerplate1
+# rainbowtype-apptest-xterm
 
-rainbowtype service boilerplate for using Websocket.
+rainbowtype service test for using Websocket.
+this test makes remote serial terminal with mutual authentication TLS.
