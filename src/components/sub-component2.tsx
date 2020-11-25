@@ -11,7 +11,7 @@ function SubComponent2() {
 
   const [message, setmessage] = useState<string[]> ([]);
   const handleClick = () => {
-    console.log('クリックされました');
+    console.log('clicked');
     ws.current.send('data sent.');
   }
   useEffect(() => {

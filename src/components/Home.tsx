@@ -6,7 +6,7 @@ import GenericTemplate from "./GenericTemplate";
 const Home: React.FC = () => {
   const [count, setcount] = useState<number>(0);
   const handleClick = () => {
-    console.log('クリックされました');
+    console.log('clicked');
 
     setcount( count + 1);
   }
